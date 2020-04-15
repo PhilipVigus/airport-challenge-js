@@ -24,6 +24,11 @@ describe('Airport', function() {
     expect(airport.planes).toEqual([]);
   });
 
+  it('throws an error if you take off a plane that is not at the airport', function() {
+    let plane = {};
+    expect(function() { airport.takeOff(plane); }).toThrowError('Plane is not at airport!');
+  });
+
   it('prevents landing when airport is full', function() {
     let plane = {};
     let plane2 = {};

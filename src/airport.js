@@ -12,11 +12,15 @@ function Airport() {
     this.planes.push(plane);
   };
 
-  function isFull() {
+  this.isFull = function() {
     return this.planes.length === CAPACITY;
   }
 }
 
 Airport.prototype.takeOff = function(plane) {
+  if (!this.planes.includes(plane)) {
+    throw new Error("Plane is not at airport!")
+  }
+  
   this.planes.pop();
 };
