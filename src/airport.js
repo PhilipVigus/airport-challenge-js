@@ -1,30 +1,29 @@
 'use strict';
 
 function Airport() {
-  this.planes = [];
-  const CAPACITY = 1;
+  const _planes = [];
+  const _CAPACITY = 1;
 
   this.land = function(plane) {
-    if (this.isFull()) {
+    if (_isFull()) {
       throw new Error("Airport is full!"); 
     }
-  
-    this.planes.push(plane);
+    _planes.push(plane);
   };
 
-  this.isFull = function() {
-    return this.planes.length === CAPACITY;
+  this.takeOff = function(plane) {
+    if (!_planes.includes(plane)) {
+      throw new Error("Plane is not at airport!")
+    }
+    
+    _planes.pop();
   }
+
+  this.isPlanePresent = function(plane) {
+    return _planes.includes(plane);
+  };
+
+  let _isFull = function() {
+    return _planes.length === _CAPACITY;
+  };
 }
-
-Airport.prototype.takeOff = function(plane) {
-  if (!this.planes.includes(plane)) {
-    throw new Error("Plane is not at airport!")
-  }
-  
-  this.planes.pop();
-};
-
-Airport.prototype.isPlanePresent = function(plane) {
-  return false;
-};

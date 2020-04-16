@@ -1,3 +1,5 @@
+'use strict';
+
 describe('Airport', function() {
   let airport;
 
@@ -5,43 +7,45 @@ describe('Airport', function() {
     airport = new Airport();
   });
 
-  it('lands a plane', function() {
-    expect(airport.land).toBeDefined();
+  describe('.land', function() {
+    it('prevents landing when airport is full', function() {
+      let plane = {};
+      let plane2 = {};
+      airport.land(plane);
+      expect(function() { airport.land(plane2); } ).toThrowError("Airport is full!");
+    });
+
+    it('lands a plane', function() {
+      let plane = {};
+      expect(function() { airport.land(plane); }).not.toThrow();
+    });
   });
 
-  'use strict';
+  describe('.takeOff', function() {
+    it('instructs a plane to take off', function() {
+      let plane = {};
+      airport.land(plane);
+      expect(function() { airport.takeOff(plane); }).not.toThrow();
+    });
+
+    it('prevents taking off a plane that is not at the airport', function() {
+      let plane = {};
+      expect(function() { airport.takeOff(plane); }).toThrowError('Plane is not at airport!');
+    });
+  });
+
+  describe('.isPlanePresent', function() {
+    it('confirms that a plane is no longer at the airport', function() {
+      let plane = {};
+      airport.land(plane);
+      airport.takeOff(plane);
+      expect(airport.isPlanePresent(plane)).toEqual(false);
+    });
   
-  it('airport stores plane when landed', function() {
-    let plane = {};
-    airport.land(plane);
-    expect(airport.planes).toEqual([plane]);
+    it('confirms that a landed plane is at the airport', function() {
+      let plane = {};
+      airport.land(plane);
+      expect(airport.isPlanePresent(plane)).toEqual(true);
+    });
   });
-
-  it('instructs a plane to take off', function() {
-    let plane = {};
-    airport.land(plane);
-    airport.takeOff(plane);
-    expect(airport.planes).toEqual([]);
-  });
-
-  it('confirms that a plane is no longer at the airport', function() {
-    let plane = {};
-    airport.land(plane);
-    airport.takeOff(plane);
-    expect(airport.isPlanePresent(plane)).toEqual(false);
-  });
-
-  it('throws an error if you take off a plane that is not at the airport', function() {
-    let plane = {};
-    expect(function() { airport.takeOff(plane); }).toThrowError('Plane is not at airport!');
-  });
-
-  it('prevents landing when airport is full', function() {
-    let plane = {};
-    let plane2 = {};
-    airport.land(plane);
-    expect(function() { airport.land(plane2); } ).toThrowError("Airport is full!");
-  })
 });
-
-//expect(function() { parser.parse(raw); } ).toThrow("Parsing is not possible");
