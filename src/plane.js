@@ -1,13 +1,17 @@
 'use strict';
 
 function Plane() {
-  this._flying = true;
+  let _flying = true;
+
+  this.isFlying = function() {
+    return _flying;
+  };
+
+  this.land = function() {
+    _flying = false;
+  };
+
+  this.takeOff = function() {
+    _flying = true;
+  };
 }
-
-Plane.prototype.isFlying = function() {
-  return this._flying;
-};
-
-Plane.prototype.land = function() {
-  this._flying = false;
-};

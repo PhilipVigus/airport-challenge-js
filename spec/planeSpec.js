@@ -14,9 +14,17 @@ describe('Plane', () => {
   });
 
   describe('#land', () => {
-    it('changes makes isFlying return false', () => {
+    it('makes isFlying return false', () => {
       plane.land();
       expect(plane.isFlying()).toEqual(false);
+    });
+  });
+
+  describe('#takeOff', () => {
+    it('makes isFlying return true', () => {
+      plane.land();
+      plane.takeOff();
+      expect(plane.isFlying()).toEqual(true);
     });
   });
 });
