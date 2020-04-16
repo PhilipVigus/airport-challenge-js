@@ -24,3 +24,7 @@ Airport.prototype.takeOff = function(plane) {
   
   this.planes.pop();
 };
+
+Airport.prototype.isPlanePresent = function(plane) {
+  return false;
+};
