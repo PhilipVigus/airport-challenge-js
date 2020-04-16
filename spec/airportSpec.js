@@ -7,6 +7,20 @@ describe('Airport', function() {
     airport = new Airport();
   });
 
+  describe('::new', function() {
+    it('can have its capacity set at creation', function() {
+      let plane1 = {};
+      let plane2 = {};
+      let plane3 = {};
+
+      airport = new Airport(2);
+      airport.land(plane1);
+      airport.land(plane2);
+      expect(function() { airport.land(plane3); } ).toThrowError("Airport is full!");
+
+    });
+  });
+
   describe('.land', function() {
     it('prevents landing when airport is full', function() {
       let plane = {};

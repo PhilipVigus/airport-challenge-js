@@ -1,8 +1,8 @@
 'use strict';
 
-function Airport() {
-  const _planes = [];
-  const _CAPACITY = 1;
+function Airport(capacity = 1) {
+  let _planes = [];
+  let _capacity = capacity;
 
   this.land = function(plane) {
     if (_isFull()) {
@@ -24,6 +24,6 @@ function Airport() {
   };
 
   let _isFull = function() {
-    return _planes.length === _CAPACITY;
+    return _planes.length === _capacity;
   };
 }
