@@ -12,4 +12,11 @@ describe('Plane', () => {
       expect(plane.isFlying()).toEqual(true);
     });
   });
+
+  describe('#land', () => {
+    it('changes makes isFlying return false', () => {
+      plane.land();
+      expect(plane.isFlying()).toEqual(false);
+    });
+  });
 });
